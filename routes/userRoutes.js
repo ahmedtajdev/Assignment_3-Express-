@@ -5,6 +5,7 @@ const {
   deleteUser,
   getUserByName,
   getAllUsers,
+  filterUsersByMinAge,
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -18,5 +19,9 @@ router.delete("/user/:id", deleteUser);
 router.get("/user/getByName", getUserByName);
 
 router.get("/user", getAllUsers);
+
+router.get("/user/filter", filterUsersByMinAge);
+
+router.get("/user/:id", getUserById);
 
 module.exports = router;

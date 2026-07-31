@@ -157,10 +157,35 @@ async function getAllUsers(req, res) {
   }
 }
 
+async function filterUsersByMinAge(req, res) {
+  try {
+    const minAge = Number(req.query.minAge);
+
+    if (minAge) {
+      const users = await readUsers();
+
+      const filteredUsers = users.filter((user) => Number(user.age) >= minAge);
+
+      if (filteredUsers.length === 0) {
+        return res.status(404).json({
+          message: "No users found.",
+        });
+      }
+
+      return res.status(200).json(filteredUsers);
+    }
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error.",
+    });
+  }
+}
+
 module.exports = {
   createUser,
   updateUser,
   deleteUser,
   getUserByName,
   getAllUsers,
+  filterUsersByMinAge,
 };
