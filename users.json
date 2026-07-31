@@ -27,7 +27,7 @@
     "age": "30"
   },
   {
-    "id": "7",
+    "id": 7,
     "name": "osama",
     "email": "osama@example.com",
     "age": "25"

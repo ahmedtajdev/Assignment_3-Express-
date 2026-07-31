@@ -47,11 +47,11 @@ async function createUser(req, res) {
 
 async function updateUser(req, res) {
   try {
-    const { id } = req.params;
+    const id = Number(req.params.id);
 
     const users = await readUsers();
 
-    const index = binarySearchById(users, Number(id));
+    const index = binarySearchById(users, id);
 
     if (index === -1) {
       return res.status(404).json({
@@ -120,8 +120,35 @@ async function deleteUser(req, res) {
   }
 }
 
+async function getUserByName(req, res) {
+  try {
+    const { name } = req.query;
+
+    if (name) {
+      const users = await readUsers();
+
+      const user = users.find(
+        (user) => user.name.toLowerCase() === name.toLowerCase(),
+      );
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User name not found.",
+        });
+      }
+
+      return res.status(200).json(user);
+    }
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error.",
+    });
+  }
+}
+
 module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getUserByName,
 };
