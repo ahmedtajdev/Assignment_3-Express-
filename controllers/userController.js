@@ -146,9 +146,21 @@ async function getUserByName(req, res) {
   }
 }
 
+async function getAllUsers(req, res) {
+  try {
+    const users = await readUsers();
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error.",
+    });
+  }
+}
+
 module.exports = {
   createUser,
   updateUser,
   deleteUser,
   getUserByName,
+  getAllUsers,
 };
