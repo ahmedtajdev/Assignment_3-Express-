@@ -1,0 +1,24 @@
+{
+  "name": "assignment_3(express)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "node --watch main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedtajdev/Assignment_3-Express-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ahmedtajdev/Assignment_3-Express-/issues"
+  },
+  "homepage": "https://github.com/ahmedtajdev/Assignment_3-Express-#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
