@@ -6,6 +6,7 @@ const {
   getUserByName,
   getAllUsers,
   filterUsersByMinAge,
+  getUserById,
 } = require("../controllers/userController");
 
 const router = express.Router();

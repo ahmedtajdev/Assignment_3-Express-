@@ -94,11 +94,11 @@ async function updateUser(req, res) {
 
 async function deleteUser(req, res) {
   try {
-    const { id } = req.params;
+    const id = Number(req.params.id);
 
     const users = await readUsers();
 
-    const index = binarySearchById(users, Number(id));
+    const index = binarySearchById(users, id);
 
     if (index === -1) {
       return res.status(404).json({
@@ -181,6 +181,28 @@ async function filterUsersByMinAge(req, res) {
   }
 }
 
+async function getUserById(req, res) {
+  try {
+    const id = Number(req.params.id);
+
+    const users = await readUsers();
+
+    const index = binarySearchById(users, id);
+
+    if (index === -1) {
+      return res.status(404).json({
+        message: "User not found.",
+      });
+    }
+
+    return res.status(200).json(users[index]);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error.",
+    });
+  }
+}
+
 module.exports = {
   createUser,
   updateUser,
@@ -188,4 +210,5 @@ module.exports = {
   getUserByName,
   getAllUsers,
   filterUsersByMinAge,
+  getUserById,
 };
